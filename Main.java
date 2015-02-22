@@ -1,3 +1,5 @@
+package Main;
+
 /**
  * 
  * Main.java.
@@ -12,8 +14,9 @@
  * 
  */
 
-// Importes:
+//package Main;
 
+// Importes:
 
 public class Main {
     
