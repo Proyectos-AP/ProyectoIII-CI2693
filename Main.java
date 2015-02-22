@@ -11,5 +11,5 @@ package Main;
  * @author prmm95
  */
 public class Main {
-    
+System.out.println("Hola mundo");    
 }
