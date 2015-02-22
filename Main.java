@@ -1,22 +1,73 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author prmm95
+ * 
+ * Main.java
+ * 
+ * Descripcion:
+ * 
+ * Nombres:
+ *      Alejandra Cordero  / Carnet: 12-10645
+ *      Pablo Maldonado    / Carnet: 12-10561
+ * 
+ * Ultima modificacion: 02/02/2015
+ * 
  */
+
+
+// Importes:
+import java.io.IOException;
+import java.util.ArrayList;
+
+
 public class Main {
     
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         
-        System.out.println("Hola mundo");  
+        Grafo grafo = new Grafo();
         
-    }
-    
-    
+        grafo.LeerArchivo(
+                "/home/prmm95/NetBeansProjects/"
+                        + "Proyecto2-CI2693/src/prueba.dat");
+        
+        for (Nodo p : grafo.ObtenerVertices()) {
+            grafo.make_set(p);
+        }
+                
+        grafo.CalcularDistancias();
+        
+        ArrayList<Arista> AristasOrd = grafo.mergeSort(grafo.aristas);
+        
+        int C = grafo.vertices.size();
+        
+        for (Arista a : AristasOrd ) {
+            
+            if ( C <= grafo.kClusters) {
+                break;
+            }
+            
+            if (grafo.find(a.u) != grafo.find(a.v)) {
+                grafo.union(a.u,a.v);
+                C--;
+            }
+            
+            //System.out.println(a.peso);
+            
+        }
+        
+        
+        
+        System.out.println(grafo.kClusters);
+        
+        for (Nodo x : grafo.ObtenerVertices()) {
+            System.out.println(" ");
+            //System.out.println(x.abscisa + " " + x.ordenada);
+            
+        }
+        
+
+        
+        
+
+    }         
   
 }
