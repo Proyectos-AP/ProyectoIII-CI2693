@@ -1,15 +1,24 @@
-package Main;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author prmm95
+ * 
+ * Main.java.
+ * 
+ * Descripcion: 
+ * 
+ * Nombres:
+ *      Alejandra Cordero  / Carnet: 12-10645
+ *      Pablo Maldonado    / Carnet: 12-10561
+ * 
+ * Ultima modificacion: 22/02/2014
+ * 
  */
+
+// Importes:
+
+
 public class Main {
+    
+    public static void main (String[] args) {
+        
+    }
     
 }
