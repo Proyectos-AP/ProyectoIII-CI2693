@@ -30,6 +30,8 @@ public class Main {
                 "/home/prmm95/NetBeansProjects/"
                         + "Proyecto2-CI2693/src/prueba.dat");
         
+
+        // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
         }
@@ -54,12 +56,24 @@ public class Main {
             //System.out.println(a.peso);
             
         }
-                        
+        
         System.out.println(grafo.kClusters);
         
         for (Nodo x : grafo.ObtenerVertices()) {
-            System.out.println(" ");
-            //System.out.println(x.abscisa + " " + x.ordenada);
+            if(x.padre==x){
+            	System.out.println("    ");
+            	System.out.println("El pader cluster es :");
+            	System.out.println(x.abscisa+"  "+x.ordenada);
+            	for (Nodo w:x.adyacencias){
+                	System.out.println("El hijo del pader cluster es :");
+                	System.out.println(w.abscisa+"  "+w.ordenada);
+            		
+            	}
+            	
+            	
+            	
+            }
+            
             
         }
         
