@@ -1,3 +1,5 @@
+//package ProyectoAlgo;
+
 /**
  * 
  * Grafo.java
@@ -71,10 +73,7 @@ public class Grafo {
             Linea = Archivo.readLine();
         
         }
-        
-        int numeroVertices = this.vertices.size();
-        //this.Distancias = new double[numeroVertices][numeroVertices]; 
-       
+  
     }
     
     public double DistanciaNodos(Nodo z,Nodo w) {
@@ -111,12 +110,9 @@ public class Grafo {
               
         }
     
-    
-    
-        public void make_set(Nodo z) {
+    public void make_set(Nodo z) {
         z.padre = z;
-        z.rango = 0;
-    
+        z.rango = 0;    
     }
     
     public void union(Nodo z,Nodo w) {
@@ -126,15 +122,16 @@ public class Grafo {
     public void link(Nodo x, Nodo y) {
         if (x.rango > y.rango) {
             y.padre = x;
+            x.adyacencias.add(y);
         }
         else {
             x.padre = y;
+             y.adyacencias.add(x);
             if (x.rango == y.rango) {
                 y.rango++;
             }
         }
     }
-    
     public Nodo find(Nodo x) {        
         if ( x != x.padre) {
             x.padre = find(x.padre);
@@ -250,5 +247,3 @@ public class Grafo {
     }
     
     
-
-  

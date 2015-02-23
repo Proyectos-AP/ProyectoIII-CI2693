@@ -1,3 +1,5 @@
+//package ProyectoAlgo;
+
 /**
  * 
  * Nodo.java
@@ -13,6 +15,7 @@
  */
 
 // Importes:
+import java.util.HashSet;
 
 public class Nodo {
     
@@ -21,10 +24,12 @@ public class Nodo {
     public double ordenada;
     public Nodo  padre;
     public int   rango;
+    public HashSet<Nodo> adyacencias;
     
     public Nodo(double x, double y) {
         this.abscisa = x;
         this.ordenada = y;
+        this.adyacencias=new HashSet<Nodo>();
         this.padre = null;
         this.rango = 0;
            

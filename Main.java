@@ -1,3 +1,5 @@
+//package ProyectoAlgo;
+
 /**
  * 
  * Main.java
@@ -25,10 +27,10 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo(
-                "/home/prmm95/NetBeansProjects/"
-                        + "Proyecto2-CI2693/src/prueba.dat");
+        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/prueba.dat");
         
+
+        // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
         }
@@ -54,19 +56,25 @@ public class Main {
             
         }
         
-        
-        
         System.out.println(grafo.kClusters);
         
         for (Nodo x : grafo.ObtenerVertices()) {
-            System.out.println(" ");
-            //System.out.println(x.abscisa + " " + x.ordenada);
+            if(x.padre==x){
+            	System.out.println("    ");
+            	System.out.println("El pader cluster es :");
+            	System.out.println(x.abscisa+"  "+x.ordenada);
+            	for (Nodo w:x.adyacencias){
+                	System.out.println("El hijo del pader cluster es :");
+                	System.out.println(w.abscisa+"  "+w.ordenada);
+            		
+            	}
+            	
+            	
+            	
+            }
+            
             
         }
-        
-
-        
-        
 
     }         
   
