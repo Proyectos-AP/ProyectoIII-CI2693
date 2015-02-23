@@ -13,6 +13,7 @@
  */
 
 // Importes:
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Shape;
@@ -47,8 +48,10 @@ public class Grafico extends ApplicationFrame {
         xyPlot.setDomainCrosshairVisible(true);
         xyPlot.setRangeCrosshairVisible(true);
         XYItemRenderer renderer = xyPlot.getRenderer();
+        
         renderer.setSeriesShape(0, cross);
-        renderer.setSeriesPaint(0, Color.blue);
+        renderer.setSeriesPaint(0, Color.orange);          
+                
         return new ChartPanel(jfreechart);
     }
     

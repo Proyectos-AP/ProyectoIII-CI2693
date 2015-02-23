@@ -49,8 +49,7 @@ public class Main {
             }
             
             if (grafo.find(a.u) != grafo.find(a.v)) {
-                grafo.union(a.u,a.v);
-                C--;
+                grafo.union(a.u,a.v);                C--;
             }
             
             //System.out.println(a.peso);
@@ -65,7 +64,7 @@ public class Main {
             	System.out.println("El pader cluster es :");
             	System.out.println(x.abscisa+"  "+x.ordenada);
             	for (Nodo w:x.adyacencias){
-                	System.out.println("El hijo del pader cluster es :");
+                	System.out.println("El hijo del padre cluster es :");
                 	System.out.println(w.abscisa+"  "+w.ordenada);
             		
             	}
