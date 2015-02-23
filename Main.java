@@ -16,6 +16,7 @@
 // Importes:
 import java.io.IOException;
 import java.util.ArrayList;
+import org.jfree.ui.RefineryUtilities;
 
 
 public class Main {
@@ -53,9 +54,7 @@ public class Main {
             //System.out.println(a.peso);
             
         }
-        
-        
-        
+                        
         System.out.println(grafo.kClusters);
         
         for (Nodo x : grafo.ObtenerVertices()) {
@@ -64,10 +63,15 @@ public class Main {
             
         }
         
-
+        // Se grafican los puntos de los nodos:
         
+        String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
         
-
+        Grafico scatterplotdemo4 = new Grafico(TituloVentana,grafo.vertices);
+        scatterplotdemo4.pack();
+        RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
+        scatterplotdemo4.setVisible(true);  
+                  
     }         
   
 }
