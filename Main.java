@@ -16,6 +16,7 @@
 // Importes:
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.jfree.ui.RefineryUtilities;
 
 
@@ -28,9 +29,9 @@ public class Main {
         
         grafo.LeerArchivo(
                 "/home/prmm95/NetBeansProjects/"
-                        + "Proyecto2-CI2693/src/prueba.dat");
+                        + "Proyecto2-CI2693/src/data/puntos1.dat");
         
-
+      
         // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
@@ -38,7 +39,20 @@ public class Main {
                 
         grafo.CalcularDistancias();
         
-        ArrayList<Arista> AristasOrd = grafo.mergeSort(grafo.aristas);
+        ArrayList<Arista> AristasOrd = grafo.aristas;
+        
+        Collections.sort(AristasOrd,new ComparadorDistancias());
+        
+        System.out.println("ya ordene");
+        //for (int i = 0; i < AristasOrd.size(); i++) {
+        //    System.out.println(AristasOrd.get(i).peso);
+            
+        //}
+
+        
+        
+        
+        //ArrayList<Arista> AristasOrd = grafo.mergeSort(grafo.aristas);
         
         int C = grafo.vertices.size();
         
@@ -56,27 +70,31 @@ public class Main {
             
         }
         
-        System.out.println(grafo.kClusters);
+        System.out.println("ya hice los clusters");
+        
+        /*        System.out.println(grafo.kClusters);
         
         for (Nodo x : grafo.ObtenerVertices()) {
-            if(x.padre==x){
-            	System.out.println("    ");
-            	System.out.println("El pader cluster es :");
-            	System.out.println(x.abscisa+"  "+x.ordenada);
-            	for (Nodo w:x.adyacencias){
-                	System.out.println("El hijo del padre cluster es :");
-                	System.out.println(w.abscisa+"  "+w.ordenada);
-            		
-            	}
-            	
-            	
-            	
-            }
-            
-            
+        if(x.padre==x){
+        System.out.println("    ");
+        System.out.println("El pader cluster es :");
+        System.out.println(x.abscisa+"  "+x.ordenada);
+        for (Nodo w:x.adyacencias){
+        System.out.println("El hijo del padre cluster es :");
+        System.out.println(w.abscisa+"  "+w.ordenada);
+        
         }
         
+        
+        
+        }
+        
+        
+        }*/
+        
         // Se grafican los puntos de los nodos:
+        
+        System.out.println("voy a graficar");
         
         String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
         
