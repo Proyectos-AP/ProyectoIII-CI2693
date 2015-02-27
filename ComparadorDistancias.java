@@ -1,3 +1,5 @@
+package ProyectoAlgo;
+
 
 import java.util.Comparator;
 
@@ -9,7 +11,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author prmm95
+ *
  */
 public class ComparadorDistancias implements Comparator<Arista>{
 
@@ -26,5 +28,3 @@ public class ComparadorDistancias implements Comparator<Arista>{
 }
     
     
-    
-  

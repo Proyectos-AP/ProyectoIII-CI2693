@@ -1,4 +1,4 @@
-//package ProyectoAlgo;
+package ProyectoAlgo;
 
 /**
  * 
@@ -52,6 +52,7 @@ public class Grafo {
             
             String[] ArregloLineas = Linea.split(" ");
             
+            
             if (ArregloLineas.length == 1) {                
                 int nClusters = Integer.parseInt(ArregloLineas[0]);                
                 this.kClusters = nClusters;
@@ -101,8 +102,8 @@ public class Grafo {
                 double Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
                 Arista arista1 = new Arista( this.vertices.get(i),this.vertices.get(j),Distancias);
                 this.AgregarArista(arista1);
-                Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
-                this.AgregarArista(arista2);
+                //Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
+                //this.AgregarArista(arista2);
                       
                 }
                
@@ -122,11 +123,12 @@ public class Grafo {
     public void link(Nodo x, Nodo y) {
         if (x.rango > y.rango) {
             y.padre = x;
-            x.adyacencias.add(y);
+            y.GrupoCluster=x.GrupoCluster;
         }
         else {
             x.padre = y;
-             y.adyacencias.add(x);
+            x.GrupoCluster=y.GrupoCluster;
+            y.adyacencias.add(x);
             if (x.rango == y.rango) {
                 y.rango++;
             }
@@ -134,12 +136,13 @@ public class Grafo {
     }
     public Nodo find(Nodo x) {        
         if ( x != x.padre) {
+        	x.GrupoCluster=x.padre.GrupoCluster;
+        	x.padre.adyacencias.add(x);
             x.padre = find(x.padre);
         }        
         return x.padre;
     }
-    
-    
+
     public ArrayList<Arista>  mezclar(ArrayList<Arista> ArregloI ,ArrayList<Arista> ArregloD) {
         
         ArrayList<Arista> ArregloMezclado = new ArrayList<Arista>();
@@ -203,7 +206,7 @@ public class Grafo {
             }
              
         }
-        
+        System.out.println("PASE EL CICLO DEL MERGE");
         ArregloIzq = mergeSort(ArregloIzq);
         ArregloDer = mergeSort(ArregloDer);
         

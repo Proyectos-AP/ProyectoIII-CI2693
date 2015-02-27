@@ -1,4 +1,4 @@
-//package ProyectoAlgo;
+package ProyectoAlgo;
 
 /**
  * 
@@ -24,7 +24,9 @@ public class Nodo {
     public double ordenada;
     public Nodo  padre;
     public int   rango;
+    public int   GrupoCluster;
     public HashSet<Nodo> adyacencias;
+    public String color;
     
     public Nodo(double x, double y) {
         this.abscisa = x;
@@ -32,6 +34,8 @@ public class Nodo {
         this.adyacencias=new HashSet<Nodo>();
         this.padre = null;
         this.rango = 0;
+        this.GrupoCluster=-1;
+        this.color="Blanco";
            
     }
     

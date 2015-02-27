@@ -31,11 +31,11 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.util.ShapeUtilities;
 
-public class Grafico extends ApplicationFrame {
+public class Grafico2 extends ApplicationFrame {
 	
 	int nClusters;
 
-    public Grafico(String s,ArrayList<Nodo> vertices,int NumeroKclusters) {
+    public Grafico2(String s,ArrayList<Nodo> vertices,int NumeroKclusters) {
     	//this.nClusters=NumeroKclusters;
         super(s);
         JPanel ventana = crearVentana(vertices,NumeroKclusters);
@@ -60,56 +60,29 @@ public class Grafico extends ApplicationFrame {
         return new ChartPanel(jfreechart);
     }
     
-    	public static void DFS (Nodo n,XYSeries s){
-    		n.color="Gris";
-    		for(Nodo w:n.adyacencias){
-    			if (w.color.equals("Blanco")){
-    				s.add(w.abscisa,w.ordenada);
-    				DFS(w,s);
-    				
-    			}
-    		}
-    		n.color="Negro";
-    	}
-    
        static XYDataset crearPuntos(ArrayList<Nodo> vertices,int NumeroKclusters) {
         //int cols = vertices.size();
         //int rows = vertices.size();
         //double[] values = new double[cols];
         XYSeriesCollection xySeriesCollection = new XYSeriesCollection();
-        //XYSeries series = new XYSeries("Puntos");
-       // XYSeries[] series = null;
-        
         //for(int i=0;i<NumeroKclusters;i++){
+        //	String letra;
+        //	letra=i+"";
+        //	String series;
+        //	series=series+i;
+        //	XYSeries series = new XYSeries("Puntos"+letra);
         	
-        	 // series[i]=new XYSeries("Puntos");	
+        	
         //}
-        
-        int k = 0;
-        //Random rand = new Random();
+        XYSeries series = new XYSeries("Puntos");
+  
         for (int i = 0; i < vertices.size(); i++) {
-        		if(vertices.get(i).padre==vertices.get(i)){
-        			XYSeries series = new XYSeries("Puntos"+k);
-                    double x = vertices.get(i).abscisa;
-                    double y = vertices.get(i).ordenada;
-                    series.add(x, y);  
-                    DFS(vertices.get(i),series);
-                    //for(Nodo w:vertices.get(i).adyacencias){
-                    //   double x1 = w.abscisa;
-                    //    double y1 = w.ordenada;
-                    //    series.add(x1, y1); 
-                    //} 
-                    xySeriesCollection.addSeries(series);
-                    k++;
-                    }   
-        		}
-        	
-               // double x = vertices.get(i).abscisa;
-                //double y = vertices.get(i).ordenada;
-                //series.add(x, y);  
-        //}
-    	//series2.add(1.0, 1.0);
-		//xySeriesCollection.addSeries(series2);
+     
+               double x = vertices.get(i).abscisa;
+               double y = vertices.get(i).ordenada;
+               series.add(x, y);  
+        }
+		xySeriesCollection.addSeries(series);
        
         return xySeriesCollection;
     }
