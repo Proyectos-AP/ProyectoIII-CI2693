@@ -56,18 +56,16 @@ public class Grafico extends ApplicationFrame {
     }
     
       private static XYDataset crearPuntos(ArrayList<Nodo> vertices) {
-        int cols = vertices.size();
-        int rows = vertices.size();
-        double[][] values = new double[cols][rows];
+        //int cols = vertices.size();
+        //int rows = vertices.size();
+        //double[] values = new double[cols];
         XYSeriesCollection xySeriesCollection = new XYSeriesCollection();
         XYSeries series = new XYSeries("Puntos");
-        Random rand = new Random();
-        for (int i = 0; i < values.length; i++) {
-            for (int j = 0; j < values[i].length; j++) {
+        //Random rand = new Random();
+        for (int i = 0; i < vertices.size(); i++) {
                 double x = vertices.get(i).abscisa;
                 double y = vertices.get(i).ordenada;
-                series.add(x, y);
-            }
+                series.add(x, y);  
         }
         xySeriesCollection.addSeries(series);
         return xySeriesCollection;
