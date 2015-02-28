@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -62,7 +62,7 @@ public class Grafico extends ApplicationFrame {
     
     	public static void DFS (Nodo n,XYSeries s){
     		n.color="Gris";
-    		for(Nodo w:n.adyacencias){
+    		for(Nodo w:n.hijos){
     			if (w.color.equals("Blanco")){
     				s.add(w.abscisa,w.ordenada);
     				DFS(w,s);

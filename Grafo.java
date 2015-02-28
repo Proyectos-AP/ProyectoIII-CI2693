@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -60,29 +60,27 @@ public class Grafo {
             
             else if (ArregloLineas.length == 2) {
                
-                double xNodo = Double.parseDouble(ArregloLineas[0]);  
-                double yNodo = Double.parseDouble(ArregloLineas[1]);     
+                float xNodo = Float.parseFloat(ArregloLineas[0]);  
+                float yNodo = Float.parseFloat(ArregloLineas[1]);     
                 
                 Nodo nuevoNodo = new Nodo(xNodo,yNodo);
                 
-                // No hace falta verificar si el nodo ya fue agregado
-                // porque es un HashSet<Nodo>:
-                this.AgregarVertice(nuevoNodo);                    
-               
+                if (!this.vertices.contains(nuevoNodo)) {
+                    this.AgregarVertice(nuevoNodo);       
+                }
             }
             
             Linea = Archivo.readLine();
-        
         }
   
     }
     
-    public double DistanciaNodos(Nodo z,Nodo w) {
-        double resultado;
+    public float DistanciaNodos(Nodo z,Nodo w) {
+        float resultado;
         resultado = 
-                Math.pow(w.abscisa-z.abscisa,2) + 
-                Math.pow(w.ordenada-z.ordenada,2);
-        return Math.sqrt(resultado);
+                (float) (Math.pow(w.abscisa-z.abscisa,2) + 
+                Math.pow(w.ordenada-z.ordenada,2));
+        return (float) Math.sqrt(resultado);
         
     }
     
@@ -99,11 +97,11 @@ public class Grafo {
             
             for (int j = i+1; j < numeroV; j++) {              
     
-                double Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
+                float Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
                 Arista arista1 = new Arista( this.vertices.get(i),this.vertices.get(j),Distancias);
                 this.AgregarArista(arista1);
-                //Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
-                //this.AgregarArista(arista2);
+                Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
+                this.AgregarArista(arista2);
                       
                 }
                
@@ -121,105 +119,38 @@ public class Grafo {
     }
     
     public void link(Nodo x, Nodo y) {
-        if (x.rango > y.rango) {
-            y.padre = x;
-            y.GrupoCluster=x.GrupoCluster;
-        }
-        else {
-            x.padre = y;
-            x.GrupoCluster=y.GrupoCluster;
-            y.adyacencias.add(x);
-            if (x.rango == y.rango) {
-                y.rango++;
-            }
-        }
+        x.padre = y;
+        //if (x.rango > y.rango) {
+        //    y.padre = x;
+            //y.GrupoCluster=x.GrupoCluster;
+            //x.hijos.add(y);
+        //}
+        //else {
+        //    x.padre = y;
+            //x.GrupoCluster=y.GrupoCluster;
+            //y.hijos.add(x);
+            //if (x.rango == y.rango) {
+            //    y.rango = y.rango + 1;
+            //}
+        //}
     }
     public Nodo find(Nodo x) {        
-        if ( x != x.padre) {
-        	x.GrupoCluster=x.padre.GrupoCluster;
-        	x.padre.adyacencias.add(x);
-            x.padre = find(x.padre);
-        }        
-        return x.padre;
-    }
-
-    public ArrayList<Arista>  mezclar(ArrayList<Arista> ArregloI ,ArrayList<Arista> ArregloD) {
-        
-        ArrayList<Arista> ArregloMezclado = new ArrayList<Arista>();
-        
-        while (ArregloI.size() > 0 || ArregloD.size() > 0) {
-            
-            if (ArregloI.size() > 0 && ArregloD.size() > 0  ) {
-                
-                if (ArregloI.get(0).peso < ArregloD.get(0).peso) {
-                ArregloMezclado.add(ArregloI.get(0));
-                ArregloI.remove(0);
-                }
-            
-                else {
-                ArregloMezclado.add(ArregloD.get(0));
-                ArregloD.remove(0);
-                }
-                
+        if ( x == x.padre) {
+        	//x.GrupoCluster=x.padre.GrupoCluster;
+        	//x.padre.hijos.add(x);
+                //x.padre = find(x.padre);
+                return x;
+        }
+        else {
+            Nodo aux = x;
+            while (aux != aux.padre) {
+                aux = aux.padre;
             }
-            
-            else if (ArregloI.size() > 0) {
-                ArregloMezclado.add(ArregloI.get(0));
-                ArregloI.remove(0);
-            }
-            
-            else if (ArregloD.size() > 0) {
-                ArregloMezclado.add(ArregloD.get(0));
-                ArregloD.remove(0);
-            }
-               
+            return aux;
         }
         
-        return ArregloMezclado;
-        
-        
     }
-    
-    public ArrayList<Arista> mergeSort(ArrayList<Arista> Arreglo) {
-        
-        if (Arreglo.size() <= 1) {
-            return Arreglo;
-        }
-        
-        ArrayList<Arista> ArregloOrdenado = new ArrayList<Arista>();
-        
-        ArrayList<Arista> ArregloIzq = new ArrayList<Arista>();
-        
-        ArrayList<Arista> ArregloDer = new ArrayList<Arista>();
-        
-        int mitad = Arreglo.size() / 2;
-        
-        for (int i = 0; i < Arreglo.size(); i++) {
-            
-            if (i < mitad) {
-                ArregloIzq.add(Arreglo.get(i));
-            }
-            
-            else {
-                ArregloDer.add(Arreglo.get(i));
-                
-            }
-             
-        }
-        System.out.println("PASE EL CICLO DEL MERGE");
-        ArregloIzq = mergeSort(ArregloIzq);
-        ArregloDer = mergeSort(ArregloDer);
-        
-        ArregloOrdenado = mezclar(ArregloIzq,ArregloDer);
-        
-        return ArregloOrdenado;
-        
-        
-        
-    }
-    
-
-    
+  
     }
     
     

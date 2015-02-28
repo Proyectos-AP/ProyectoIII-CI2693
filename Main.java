@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -12,15 +12,12 @@ package ProyectoAlgo;
  * 
  * Ultima modificacion: 02/02/2015
  * 
- 
-
 */
 
 // Importes:
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import org.jfree.ui.RefineryUtilities;
 
 
@@ -31,7 +28,7 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/puntos1.dat");
+        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
         
         System.out.println("PASE LEER ARCHIVO");
         // Se forman los singletones
@@ -43,30 +40,47 @@ public class Main {
         grafo.CalcularDistancias();
         System.out.println("PASE CALCULAR DISTANCIA");
         
-        ArrayList<Arista> AristasOrd = grafo.aristas;
+        Collections.sort(grafo.aristas,new ComparadorDistancias());
         
-        Collections.sort(AristasOrd,new ComparadorDistancias());
+        //Boolean ordenado = true;
+        //for (int i = 0; i < grafo.aristas.size() - 1; i++) {
+            
+        //    if ( grafo.aristas.get(i).peso > grafo.aristas.get(i + 1).peso ) {
+        //       ordenado = false;
+        //       break;
+        //    }
+        //    
+        //    else {
+        //        continue;
+        //    }
+        //}
+        
+        //System.out.println(ordenado);
+        
+        
         
         System.out.println("ya ordene");
         
-       // for (int x=0; x<AristasOrd.size();x++){
-       // 	System.out.println(AristasOrd.get(x).peso);
-       // 	System.out.println("Aristas :");
-       // 	System.out.println(AristasOrd.get(x).u.abscisa + " "+AristasOrd.get(x).u.ordenada);
-       // 	System.out.println(AristasOrd.get(x).v.abscisa + " "+AristasOrd.get(x).v.ordenada);
-      //}
+        /*        for (int x=0; x<grafo.aristas.size();x++){
+        System.out.println(grafo.aristas.get(x).peso);
+        System.out.println("Aristas :");
+        System.out.println(grafo.aristas.get(x).u.abscisa + " "+grafo.aristas.get(x).u.ordenada);
+        System.out.println(grafo.aristas.get(x).v.abscisa + " "+grafo.aristas.get(x).v.ordenada);
+        }*/
+                        
+        
         System.out.println("ORDENE LAS ARISTAS");
         int C = grafo.vertices.size();
         
-        for (Arista a : AristasOrd ) {
-            
+        for (Arista a : grafo.aristas) {
+            //System.out.println("Numero de clusters " + C );
             if ( C <= grafo.kClusters) {
                 break;
             }
             
             if (grafo.find(a.u) != grafo.find(a.v)) {
                 grafo.union(a.u,a.v);
-                C--;
+                C = C - 1;
             }
             
             //System.out.println(a.peso);
@@ -75,21 +89,48 @@ public class Main {
         
         System.out.println(grafo.kClusters);
         
+        ArrayList<Nodo> ArregloPadres = new ArrayList<>();
+        
+        // Primero se encuentran los padres: 
+        
+        for (Nodo x : grafo.ObtenerVertices()) {
+            if (x.padre == x) {
+                ArregloPadres.add(x);
+            }
+        }
+        
+        //System.out.println("numero de clusters " + ArregloPadres.size());
+        
+        // Se asigna cada nodo a su padre correspondiente:
+        
+        for (Nodo x : grafo.ObtenerVertices()) {
+            if (x.padre != x) {
+                Nodo padre = grafo.find(x);
+                //System.out.println(padre.abscisa + " hijo " + x.abscisa);
+                for (int i = 0; i < ArregloPadres.size(); i++) {
+                   if (padre == ArregloPadres.get(i)) {
+                        ArregloPadres.get(i).hijos.add(x);
+                    }
+                }
+                 
+                
+           }
+        }
+        
+        
+        
         //for (Nodo x : grafo.ObtenerVertices()) {
-            //if(x.padre==x){
-            	//System.out.println("    ");
-            	//System.out.println("El pader cluster es :");
-            	//System.out.println(x.abscisa+"  "+x.ordenada);
-            	//for (Nodo w:x.adyacencias){
-                //	System.out.println("El hijo del pader cluster es :");
-                //	System.out.println(w.abscisa+"  "+w.ordenada);
-            		
-            //	}
-            	
-            	
-            	
-          //  }
-        //}
+        //    if(x.padre==x){
+        //    System.out.println("    ");
+        //    System.out.println("aqui empieza un cluster:");
+        //    System.out.println(x.abscisa+"  "+x.ordenada);
+        //    for (Nodo w:x.hijos){
+        //        System.out.println("El hijo del pader cluster es :");
+        //        System.out.println(w.abscisa+"  "+w.ordenada);
+               
+        //     }
+        //  }
+        // }
         
        // Se grafican los puntos
         

@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -20,24 +20,22 @@ import java.util.HashSet;
 public class Nodo {
     
     // Atributos de un Nodo: 
-    public double abscisa;
-    public double ordenada;
+    public float abscisa;
+    public float ordenada;
     public Nodo  padre;
     public int   rango;
     public int   GrupoCluster;
-    public HashSet<Nodo> adyacencias;
+    public HashSet<Nodo> hijos;
     public String color;
     
-    public Nodo(double x, double y) {
+    public Nodo(float x, float y) {
         this.abscisa = x;
         this.ordenada = y;
-        this.adyacencias=new HashSet<Nodo>();
+        this.hijos = new HashSet<>();
         this.padre = null;
         this.rango = 0;
         this.GrupoCluster=-1;
-        this.color="Blanco";
-           
+        this.color = "Blanco";       
     }
     
-        
 }
