@@ -31,6 +31,10 @@ public class Main {
         grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
         
         System.out.println("PASE LEER ARCHIVO");
+        
+        // Se empieza a tomar el tiempo:
+        long tiempoIni = System.currentTimeMillis();
+        
         // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
@@ -86,6 +90,12 @@ public class Main {
             //System.out.println(a.peso);
             
         }
+        
+        // Se termina de tomar el tiempo:
+        
+        long tiempoFin = System.currentTimeMillis();
+        
+        long tiempoCorrida = tiempoFin - tiempoIni;
         
         System.out.println(grafo.kClusters);
         
@@ -153,9 +163,13 @@ public class Main {
        RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
        scatterplotdemo2.setVisible(true);  
                   
-            
+       
+       // Se imprime por consola el tiempo tomado por el algoritmo
+       // y el numero de puntos procesados
+        System.out.println(tiempoCorrida + " " + grafo.vertices.size());
             
         }
 
+   
     } 
         
