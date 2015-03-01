@@ -31,8 +31,6 @@ while getopts 'q' opt
 
 if [ $bool = "True" ]
 	then
-		java -jar ./jcommon-1.0.23/jcommon-1.0.23.jar
-		java -jar ./jfreechart-1.0.19/jfreechart-1.0.19-demo.jar
 		java Main "0" $1
 	
 else
