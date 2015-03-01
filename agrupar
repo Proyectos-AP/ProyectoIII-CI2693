@@ -31,10 +31,10 @@ while getopts 'q' opt
 
 if [ $bool = "True" ]
 	then
-		java HolaMundo "0" $1
+		java -Xmx4g -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "0" $1
 	
 else
-		java HolaMundo "1" $1
+		java -Xmx4g -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "1" $1
 
 fi
 

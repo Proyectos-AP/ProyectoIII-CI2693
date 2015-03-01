@@ -1,4 +1,4 @@
-//package ProyectoAlgo;
+package ProyectoAlgo;
 
 /**
  * 
@@ -28,52 +28,30 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
+        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/puntos1.dat");
         
         System.out.println("PASE LEER ARCHIVO");
+        
         // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
         }
         System.out.println("PASE EL MAKE SET");
-                
+        
+        //Se calculan las distancias entre todos los puntos:        
         grafo.CalcularDistancias();
         System.out.println("PASE CALCULAR DISTANCIA");
         
+        // Se ordenan las aristas 
         Collections.sort(grafo.aristas,new ComparadorDistancias());
-        
-        //Boolean ordenado = true;
-        //for (int i = 0; i < grafo.aristas.size() - 1; i++) {
-            
-        //    if ( grafo.aristas.get(i).peso > grafo.aristas.get(i + 1).peso ) {
-        //       ordenado = false;
-        //       break;
-        //    }
-        //    
-        //    else {
-        //        continue;
-        //    }
-        //}
-        
-        //System.out.println(ordenado);
-        
-        
-        
         System.out.println("ya ordene");
-        
-        /*        for (int x=0; x<grafo.aristas.size();x++){
-        System.out.println(grafo.aristas.get(x).peso);
-        System.out.println("Aristas :");
-        System.out.println(grafo.aristas.get(x).u.abscisa + " "+grafo.aristas.get(x).u.ordenada);
-        System.out.println(grafo.aristas.get(x).v.abscisa + " "+grafo.aristas.get(x).v.ordenada);
-        }*/
-                        
         
         System.out.println("ORDENE LAS ARISTAS");
         int C = grafo.vertices.size();
         
+        // Se aplica el algoritmos de Kruscal
         for (Arista a : grafo.aristas) {
-            //System.out.println("Numero de clusters " + C );
+     
             if ( C <= grafo.kClusters) {
                 break;
             }
@@ -81,17 +59,13 @@ public class Main {
             if (grafo.find(a.u) != grafo.find(a.v)) {
                 grafo.union(a.u,a.v);
                 C = C - 1;
-            }
-            
-            //System.out.println(a.peso);
-            
+            }  
         }
         
-        System.out.println(grafo.kClusters);
         
         ArrayList<Nodo> ArregloPadres = new ArrayList<>();
         
-        // Primero se encuentran los padres: 
+        // Primero se encuentran los padres de cada cluster: 
         
         for (Nodo x : grafo.ObtenerVertices()) {
             if (x.padre == x) {
@@ -99,7 +73,7 @@ public class Main {
             }
         }
         
-        //System.out.println("numero de clusters " + ArregloPadres.size());
+   
         
         // Se asigna cada nodo a su padre correspondiente:
         
@@ -112,43 +86,26 @@ public class Main {
                         ArregloPadres.get(i).hijos.add(x);
                     }
                 }
-                 
-                
+  
            }
         }
         
-        
-        
-        //for (Nodo x : grafo.ObtenerVertices()) {
-        //    if(x.padre==x){
-        //    System.out.println("    ");
-        //    System.out.println("aqui empieza un cluster:");
-        //    System.out.println(x.abscisa+"  "+x.ordenada);
-        //    for (Nodo w:x.hijos){
-        //        System.out.println("El hijo del pader cluster es :");
-        //        System.out.println(w.abscisa+"  "+w.ordenada);
-               
-        //     }
-        //  }
-        // }
-        
-       // Se grafican los puntos
+ 
+       // Se grafican los clusters
         
        System.out.println("voy a graficar");
         
        String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
-       Grafico scatterplotdemo4 = new Grafico(TituloVentana,grafo.vertices,grafo.kClusters);
-       Grafico.crearPuntos(grafo.vertices, grafo.kClusters);
+       Grafico scatterplotdemo4 = new Grafico(TituloVentana,ArregloPadres);
        scatterplotdemo4.pack();
        RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
        scatterplotdemo4.setVisible(true); 
         
-       // Se grafican los clusters
+       // Se grafican los puntos
        System.out.println("voy a graficar verdadero grafico");
         
        String TituloVentana2 = "Grafico2: " + grafo.kClusters + "-clusters"; 
-       Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices,grafo.kClusters);
-       Grafico2.crearPuntos(grafo.vertices, grafo.kClusters);
+       Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices);
        scatterplotdemo2.pack();
        RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
        scatterplotdemo2.setVisible(true);  

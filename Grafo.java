@@ -1,4 +1,4 @@
-//package ProyectoAlgo;
+package ProyectoAlgo;
 
 /**
  * 
@@ -119,21 +119,18 @@ public class Grafo {
     }
     
     public void link(Nodo x, Nodo y) {
-        x.padre = y;
-        //if (x.rango > y.rango) {
-        //    y.padre = x;
-            //y.GrupoCluster=x.GrupoCluster;
-            //x.hijos.add(y);
-        //}
-        //else {
-        //    x.padre = y;
-            //x.GrupoCluster=y.GrupoCluster;
-            //y.hijos.add(x);
-            //if (x.rango == y.rango) {
-            //    y.rango = y.rango + 1;
-            //}
-        //}
+       
+        if (x.rango > y.rango) {
+            y.padre = x;
+        }
+        else {
+            x.padre = y;
+            if (x.rango == y.rango) {
+                y.rango = y.rango + 1;
+            }
+        }
     }
+    
     public Nodo find(Nodo x) {        
         if ( x == x.padre) {
         	//x.GrupoCluster=x.padre.GrupoCluster;
