@@ -147,21 +147,21 @@ public class Main {
        System.out.println("voy a graficar");
         
        String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
-       Grafico scatterplotdemo4 = new Grafico(TituloVentana,grafo.vertices,grafo.kClusters);
-       Grafico.crearPuntos(grafo.vertices, grafo.kClusters);
-       scatterplotdemo4.pack();
-       RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
-       scatterplotdemo4.setVisible(true); 
+       //Grafico scatterplotdemo4 = new Grafico(TituloVentana,grafo.vertices,grafo.kClusters);
+       //Grafico.crearPuntos(grafo.vertices, grafo.kClusters);
+       //scatterplotdemo4.pack();
+       //RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
+       //scatterplotdemo4.setVisible(true); 
         
        // Se grafican los clusters
        System.out.println("voy a graficar verdadero grafico");
         
        String TituloVentana2 = "Grafico2: " + grafo.kClusters + "-clusters"; 
-       Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices,grafo.kClusters);
-       Grafico2.crearPuntos(grafo.vertices, grafo.kClusters);
-       scatterplotdemo2.pack();
-       RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
-       scatterplotdemo2.setVisible(true);  
+       //Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices,grafo.kClusters);
+       //Grafico2.crearPuntos(grafo.vertices, grafo.kClusters);
+       //scatterplotdemo2.pack();
+       //RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
+       //scatterplotdemo2.setVisible(true);  
                   
        
        // Se imprime por consola el tiempo tomado por el algoritmo
