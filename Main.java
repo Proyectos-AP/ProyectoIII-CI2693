@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -28,7 +28,7 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/puntos1.dat");
+        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
         
         System.out.println("PASE LEER ARCHIVO");
         
@@ -44,7 +44,33 @@ public class Main {
         
         // Se ordenan las aristas 
         Collections.sort(grafo.aristas,new ComparadorDistancias());
+        
+        //Boolean ordenado = true;
+        //for (int i = 0; i < grafo.aristas.size() - 1; i++) {
+            
+        //    if ( grafo.aristas.get(i).peso > grafo.aristas.get(i + 1).peso ) {
+        //       ordenado = false;
+        //       break;
+        //    }
+        //    
+        //    else {
+        //        continue;
+        //    }
+        //}
+        
+        //System.out.println(ordenado);
+        
+        
+        
         System.out.println("ya ordene");
+        
+        /*        for (int x=0; x<grafo.aristas.size();x++){
+        System.out.println(grafo.aristas.get(x).peso);
+        System.out.println("Aristas :");
+        System.out.println(grafo.aristas.get(x).u.abscisa + " "+grafo.aristas.get(x).u.ordenada);
+        System.out.println(grafo.aristas.get(x).v.abscisa + " "+grafo.aristas.get(x).v.ordenada);
+        }*/
+                        
         
         System.out.println("ORDENE LAS ARISTAS");
         int C = grafo.vertices.size();
@@ -62,6 +88,7 @@ public class Main {
             }  
         }
         
+        System.out.println(grafo.kClusters);
         
         ArrayList<Nodo> ArregloPadres = new ArrayList<>();
         
@@ -86,7 +113,8 @@ public class Main {
                         ArregloPadres.get(i).hijos.add(x);
                     }
                 }
-  
+                 
+                
            }
         }
         
