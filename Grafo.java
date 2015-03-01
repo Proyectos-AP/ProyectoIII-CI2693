@@ -10,7 +10,7 @@
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
  */
 
@@ -119,36 +119,30 @@ public class Grafo {
     }
     
     public void link(Nodo x, Nodo y) {
-        x.padre = y;
-        //if (x.rango > y.rango) {
-        //    y.padre = x;
+        //x.padre = y;
+        if (x.rango > y.rango) {
+            y.padre = x;
             //y.GrupoCluster=x.GrupoCluster;
             //x.hijos.add(y);
-        //}
-        //else {
-        //    x.padre = y;
-            //x.GrupoCluster=y.GrupoCluster;
-            //y.hijos.add(x);
-            //if (x.rango == y.rango) {
-            //    y.rango = y.rango + 1;
-            //}
-        //}
-    }
-    public Nodo find(Nodo x) {        
-        if ( x == x.padre) {
-        	//x.GrupoCluster=x.padre.GrupoCluster;
-        	//x.padre.hijos.add(x);
-                //x.padre = find(x.padre);
-                return x;
         }
         else {
-            Nodo aux = x;
-            while (aux != aux.padre) {
-                aux = aux.padre;
+            x.padre = y;
+            //x.GrupoCluster=y.GrupoCluster;
+            //y.hijos.add(x);
+            if (x.rango == y.rango) {
+                y.rango = y.rango + 1;
             }
-            return aux;
         }
-        
+    }
+    
+    public Nodo find(Nodo x) {        
+        if ( x != x.padre) {
+        	//x.GrupoCluster=x.padre.GrupoCluster;
+        	//x.padre.hijos.add(x);
+                x.padre = find(x.padre);
+               
+        }
+        return x.padre;
     }
   
     }

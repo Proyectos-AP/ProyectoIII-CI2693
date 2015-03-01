@@ -10,7 +10,7 @@
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
 */
 
@@ -28,7 +28,8 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos3.dat");
+        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/"
+                + "src/data/puntos1.dat");
         
         System.out.println("PASE LEER ARCHIVO");    
         
@@ -147,7 +148,8 @@ public class Main {
        System.out.println("voy a graficar");
         
        String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
-       Grafico scatterplotdemo4 = new Grafico(TituloVentana,grafo.vertices,grafo.kClusters);
+       Grafico scatterplotdemo4 = 
+               new Grafico(TituloVentana,grafo.vertices,grafo.kClusters);
        Grafico.crearPuntos(grafo.vertices, grafo.kClusters);
        scatterplotdemo4.pack();
        RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
@@ -157,7 +159,8 @@ public class Main {
        System.out.println("voy a graficar verdadero grafico");
         
        String TituloVentana2 = "Grafico2: " + grafo.kClusters + "-clusters"; 
-       Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices,grafo.kClusters);
+       Grafico2 scatterplotdemo2 = 
+               new Grafico2(TituloVentana2,grafo.vertices,grafo.kClusters);
        Grafico2.crearPuntos(grafo.vertices, grafo.kClusters);
        scatterplotdemo2.pack();
        RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);

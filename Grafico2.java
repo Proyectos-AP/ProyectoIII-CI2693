@@ -10,13 +10,12 @@
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
  */
 
 // Importes:
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Shape;
 import java.util.*;
