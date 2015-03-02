@@ -1,18 +1,22 @@
 //package ProyectoAlgo;
 
+/**
+ * 
+ * Nodo.java
+ * 
+ * Descripcion: Comparador para ordenar las aristas segun su peso
+ * 
+ * Nombres:
+ *      Alejandra Cordero  / Carnet: 12-10645
+ *      Pablo Maldonado    / Carnet: 12-10561
+ * 
+ * Ultima modificacion: 04/03/2015
+ * 
+ */
 
+// Importes:
 import java.util.Comparator;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- *
- */
 public class ComparadorDistancias implements Comparator<Arista>{
 
     @Override

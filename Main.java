@@ -25,13 +25,15 @@ public class Main {
     
 
     public static void main(String[] args) throws IOException {
-    	System.out.println("PASE LEER ARCHIVO");
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/prueba.dat");
+        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
         
         System.out.println("PASE LEER ARCHIVO");
+        
+        // Se empieza a tomar el tiempo:
+        long tiempoIni = System.currentTimeMillis();
         
         // Se forman los singletones
         for (Nodo p : grafo.ObtenerVertices()) {
@@ -44,8 +46,8 @@ public class Main {
         System.out.println("PASE CALCULAR DISTANCIA");
         
         // Se ordenan las aristas 
-        Collections.sort(grafo.aristas,new ComparadorDistancias());
-        System.out.println("ya ordene");
+        Collections.sort(grafo.aristas,new ComparadorDistancias());      
+        System.out.println("ya ordene");                  
         
         System.out.println("ORDENE LAS ARISTAS");
         int C = grafo.vertices.size();
@@ -63,6 +65,13 @@ public class Main {
             }  
         }
         
+        // Se termina de tomar el tiempo:
+        
+        long tiempoFin = System.currentTimeMillis();
+        
+        long tiempoCorrida = tiempoFin - tiempoIni;
+        
+        System.out.println(grafo.kClusters);
         
         ArrayList<Nodo> ArregloPadres = new ArrayList<>();
         
@@ -116,5 +125,6 @@ public class Main {
             
         }
 
+   
     } 
         

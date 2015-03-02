@@ -10,7 +10,7 @@
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
  */
 
@@ -23,10 +23,7 @@ public class Arista {
     public Arista(Nodo nodo1, Nodo nodo2, double weight) {
         this.u = nodo1;
         this.v = nodo2;
-        this.peso = weight;
-        
-    }
-    
-    
+        this.peso = weight;   
+    } 
     
 }

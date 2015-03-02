@@ -1,4 +1,4 @@
-package ProyectoAlgo;
+//package ProyectoAlgo;
 
 /**
  * 
@@ -10,7 +10,7 @@ package ProyectoAlgo;
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
  */
 
@@ -132,20 +132,11 @@ public class Grafo {
     }
     
     public Nodo find(Nodo x) {        
-        if ( x == x.padre) {
-        	//x.GrupoCluster=x.padre.GrupoCluster;
-        	//x.padre.hijos.add(x);
-                //x.padre = find(x.padre);
-                return x;
+        if ( x != x.padre) {
+                x.padre = find(x.padre);
+               
         }
-        else {
-            Nodo aux = x;
-            while (aux != aux.padre) {
-                aux = aux.padre;
-            }
-            return aux;
-        }
-        
+        return x.padre;
     }
   
     }

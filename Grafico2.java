@@ -10,7 +10,7 @@
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
  */
 
@@ -18,15 +18,18 @@
 
 //import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Shape;
 import java.util.*;
 import javax.swing.JPanel;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
+import org.jfree.util.ShapeUtilities;
 
 public class Grafico2 extends ApplicationFrame {
 	
