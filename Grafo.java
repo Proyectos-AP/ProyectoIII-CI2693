@@ -60,8 +60,8 @@ public class Grafo {
             
             else if (ArregloLineas.length == 2) {
                
-                float xNodo = Float.parseFloat(ArregloLineas[0]);  
-                float yNodo = Float.parseFloat(ArregloLineas[1]);     
+                double xNodo = Double.parseDouble(ArregloLineas[0]);  
+                double yNodo = Double.parseDouble(ArregloLineas[0]);     
                 
                 Nodo nuevoNodo = new Nodo(xNodo,yNodo);
                 
@@ -75,12 +75,12 @@ public class Grafo {
   
     }
     
-    public float DistanciaNodos(Nodo z,Nodo w) {
-        float resultado;
+    public double DistanciaNodos(Nodo z,Nodo w) {
+        double resultado;
         resultado = 
-                (float) (Math.pow(w.abscisa-z.abscisa,2) + 
+                (double) (Math.pow(w.abscisa-z.abscisa,2) + 
                 Math.pow(w.ordenada-z.ordenada,2));
-        return (float) Math.sqrt(resultado);
+        return (double) Math.sqrt(resultado);
         
     }
     
@@ -97,7 +97,7 @@ public class Grafo {
             
             for (int j = i+1; j < numeroV; j++) {              
     
-                float Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
+                double Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
                 Arista arista1 = new Arista( this.vertices.get(i),this.vertices.get(j),Distancias);
                 this.AgregarArista(arista1);
                 Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
