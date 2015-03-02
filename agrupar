@@ -15,7 +15,6 @@ while getopts 'q' opt
 	do
 		case $opt in
 		q)
-			echo "Use el -d"
 			bool="True"
 			;;
 
@@ -31,10 +30,13 @@ while getopts 'q' opt
 
 if [ $bool = "True" ]
 	then
-		java -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "0" $2
+		path="$(pwd)/$2"
+		echo "La ruta es : $path"
+		java -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "0" "$path" 
 	
 else
-		java -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "1" $1
-
-fi
+		path="$(pwd)/$1"
+		echo "La ruta es: $path"
+		java -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "1"  "$path"
+	fi
 

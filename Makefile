@@ -3,3 +3,6 @@ all:
 
 clean:
 	rm *.java~
+	rm *.class
+
+

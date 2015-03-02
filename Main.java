@@ -28,8 +28,8 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/prueba.dat");
-        
+        grafo.LeerArchivo(args[1]);
+        System.out.println("Argumento 1 : "+args[1]);
         System.out.println("PASE LEER ARCHIVO");
         
         // Se empieza a tomar el tiempo:
@@ -107,7 +107,7 @@ public class Main {
     	   System.out.println("voy a graficar");
         
     	   String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
-    	   Grafico scatterplotdemo4 = new Grafico(TituloVentana,ArregloPadres);
+    	   Grafico scatterplotdemo4 = new Grafico(TituloVentana,ArregloPadres,grafo.kClusters);
     	   scatterplotdemo4.pack();
     	   RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
     	   scatterplotdemo4.setVisible(true); 
@@ -120,11 +120,10 @@ public class Main {
     	   scatterplotdemo2.pack();
     	   RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
     	   scatterplotdemo2.setVisible(true);  
-       			}    
-
-	System.out.println(tiempoCorrida+"  "+grafo.vertices.size());    
+       			}        
             
-            
+           
+	 System.out.println(tiempoCorrida+" "+grafo.vertices.size()); 
         }
 
    

@@ -61,7 +61,7 @@ public class Grafo {
             else if (ArregloLineas.length == 2) {
                
                 double xNodo = Double.parseDouble(ArregloLineas[0]);  
-                double yNodo = Double.parseDouble(ArregloLineas[0]);     
+                double yNodo = Double.parseDouble(ArregloLineas[1]);     
                 
                 Nodo nuevoNodo = new Nodo(xNodo,yNodo);
                 
@@ -133,7 +133,8 @@ public class Grafo {
     
     public Nodo find(Nodo x) {        
         if ( x != x.padre) {
-                x.padre = find(x.padre);    
+                x.padre = find(x.padre);
+               
         }
         return x.padre;
     }

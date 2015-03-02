@@ -30,17 +30,17 @@ import org.jfree.ui.ApplicationFrame;
 
 public class Grafico extends ApplicationFrame {
 	
-    public Grafico(String s,ArrayList<Nodo> vertices) {
+    public Grafico(String s,ArrayList<Nodo> vertices,int kClusters) {
   
         super(s);
-        JPanel ventana = crearVentana(vertices);
+        JPanel ventana = crearVentana(vertices,kClusters);
         ventana.setPreferredSize(new Dimension(640, 480));
         add(ventana);
     }
 
-    public static JPanel crearVentana(ArrayList<Nodo> vertices ) {
+    public static JPanel crearVentana(ArrayList<Nodo> vertices,int kClusters ) {
         JFreeChart jfreechart = ChartFactory.createScatterPlot(
-            "Grafico de Clusters", "Abscisas", "Ordenadas", 
+            "K = "+ kClusters, "Abscisas", "Ordenadas", 
             crearPuntos(vertices),
             PlotOrientation.VERTICAL, true, true, false);
         XYPlot xyPlot = (XYPlot) jfreechart.getPlot();
@@ -56,7 +56,7 @@ public class Grafico extends ApplicationFrame {
         int k = 0;
    
         for (int i = 0; i < vertices.size(); i++) {
-        			XYSeries series = new XYSeries("Puntos"+k);
+        			XYSeries series = new XYSeries("Cluster "+k);
                     double x = vertices.get(i).abscisa;
                     double y = vertices.get(i).ordenada;
                     series.add(x, y);  
