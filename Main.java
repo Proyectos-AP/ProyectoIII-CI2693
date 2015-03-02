@@ -1,16 +1,15 @@
-//package ProyectoAlgo;
-
 /**
  * 
  * Main.java
  * 
- * Descripcion:
+ * Descripcion: Dado un parametro k, se calculan los k-clusters de un conjunto 
+ * de puntos dados utilizando el algoritmo de Kruskal
  * 
  * Nombres:
  *      Alejandra Cordero  / Carnet: 12-10645
  *      Pablo Maldonado    / Carnet: 12-10561
  * 
- * Ultima modificacion: 02/02/2015
+ * Ultima modificacion: 04/03/2015
  * 
 */
 
@@ -23,14 +22,15 @@ import org.jfree.ui.RefineryUtilities;
 
 public class Main {
     
-
     public static void main(String[] args) throws IOException {
         
-        Grafo grafo = new Grafo();
+        Grafo grafo = new Grafo(); 
+        // args[1] es el parametro recibido por agrupar
+        grafo.LeerArchivo(args[1]); 
         
-        grafo.LeerArchivo(args[1]);
-        System.out.println("Argumento 1 : "+args[1]);
-        System.out.println("PASE LEER ARCHIVO");
+        
+        //Se calculan las distancias entre todos los puntos:        
+        grafo.CalcularDistancias();
         
         // Se empieza a tomar el tiempo:
         long tiempoIni = System.currentTimeMillis();
@@ -39,20 +39,15 @@ public class Main {
         for (Nodo p : grafo.ObtenerVertices()) {
             grafo.make_set(p);
         }
-        System.out.println("PASE EL MAKE SET");
+                
+        // Se ordenan las aristas usando el comparator implementado en
+        // ComparadorDistancias.java
+        Collections.sort(grafo.aristas,new ComparadorDistancias());                      
         
-        //Se calculan las distancias entre todos los puntos:        
-        grafo.CalcularDistancias();
-        System.out.println("PASE CALCULAR DISTANCIA");
-        
-        // Se ordenan las aristas 
-        Collections.sort(grafo.aristas,new ComparadorDistancias());      
-        System.out.println("ya ordene");                  
-        
-        System.out.println("ORDENE LAS ARISTAS");
+        // Se inicializa el numero de k-clusters como el numero de vertices:
         int C = grafo.vertices.size();
         
-        // Se aplica el algoritmos de Kruscal
+        // Se aplica el algoritmo de Kruskal
         for (Arista a : grafo.aristas) {
      
             if ( C <= grafo.kClusters) {
@@ -65,65 +60,57 @@ public class Main {
             }  
         }
         
-        // Se termina de tomar el tiempo:
-        
+        // Se termina de tomar el tiempo:        
         long tiempoFin = System.currentTimeMillis();
-        
         long tiempoCorrida = tiempoFin - tiempoIni;
+      
+        // Dependiendo del argumento recibido en agrupar se genera una grafica
+        // con los k-clusters:   
         
-        System.out.println(grafo.kClusters);
         
-        ArrayList<Nodo> ArregloPadres = new ArrayList<>();
-        
-        // Primero se encuentran los padres de cada cluster: 
-        
-        for (Nodo x : grafo.ObtenerVertices()) {
-            if (x.padre == x) {
-                ArregloPadres.add(x);
-            }
-        }
-        
-   
-        
-        // Se asigna cada nodo a su padre correspondiente:
-        
-        for (Nodo x : grafo.ObtenerVertices()) {
-            if (x.padre != x) {
-                Nodo padre = grafo.find(x);
-                //System.out.println(padre.abscisa + " hijo " + x.abscisa);
-                for (int i = 0; i < ArregloPadres.size(); i++) {
-                   if (padre == ArregloPadres.get(i)) {
-                        ArregloPadres.get(i).hijos.add(x);
-                    }
-                }
-  
-           }
-        }
-        
- 
-       // Se grafican los clusters
-        
-       if(args[0].equals("1")){
-    	   System.out.println("voy a graficar");
-        
-    	   String TituloVentana = "Grafico: " + grafo.kClusters + "-clusters"; 
-    	   Grafico scatterplotdemo4 = new Grafico(TituloVentana,ArregloPadres,grafo.kClusters);
-    	   scatterplotdemo4.pack();
-    	   RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
-    	   scatterplotdemo4.setVisible(true); 
-        
-    	   // Se grafican los puntos
-    	   System.out.println("voy a graficar verdadero grafico");
-        
-    	   String TituloVentana2 = "Grafico2: " + grafo.kClusters + "-clusters"; 
-    	   Grafico2 scatterplotdemo2 = new Grafico2(TituloVentana2,grafo.vertices);
-    	   scatterplotdemo2.pack();
-    	   RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
-    	   scatterplotdemo2.setVisible(true);  
-       			}        
+        if(args[0].equals("1")) {
             
-           
-	 System.out.println(tiempoCorrida+" "+grafo.vertices.size()); 
+            // Se inicializa el arreglo que contendra los padres (raices) de 
+            // cada cluster:
+            ArrayList<Nodo> ArregloPadres = new ArrayList<>();
+        
+            // Primero se encuentran los padres de cada cluster:         
+            for (Nodo x : grafo.ObtenerVertices()) {
+                if (x.padre == x) {
+                    ArregloPadres.add(x);
+                }
+            }
+       
+            // Se asigna cada nodo a su padre correspondiente:        
+            for (Nodo x : grafo.ObtenerVertices()) {
+                if (x.padre != x) {
+                    Nodo padre = grafo.find(x);
+                    for (int i = 0; i < ArregloPadres.size(); i++) {
+                        if (padre == ArregloPadres.get(i)) {
+                            ArregloPadres.get(i).hijos.add(x);
+                        }
+                    }
+  
+                }
+            }        
+                  
+            // Se crea la grafica de los k-clusters:
+    	    String TituloVentana = 
+                    "Grafico: " + grafo.kClusters + "-clusters"; 
+            // Se crea una variabe de tipo Grafico:
+    	    Grafico graficakClusters = 
+                    new Grafico(TituloVentana,ArregloPadres,grafo.kClusters);
+            // Se centra la grafica y se establece visible:
+    	    graficakClusters.pack();
+    	    RefineryUtilities.centerFrameOnScreen(graficakClusters);
+    	    graficakClusters.setVisible(true); 
+        
+       	}        
+            
+        // Se imprimen el tiempo de ejecucion del algoritmo de Kruskal
+        // y el numero de puntos procesados:
+	System.out.println(tiempoCorrida + " " + grafo.vertices.size()); 
+        
         }
 
    

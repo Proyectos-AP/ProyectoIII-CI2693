@@ -1,5 +1,3 @@
-//package ProyectoAlgo;
-
 /**
  * 
  * Grafo.java
@@ -27,7 +25,6 @@ public class Grafo {
     public ArrayList<Nodo> vertices;
     public int kClusters;
     public ArrayList<Arista> aristas;
-    //public double[][] Distancias = new double[0][0];
         
     public Grafo() {
         this.vertices = new ArrayList<>();
@@ -42,7 +39,8 @@ public class Grafo {
         return this.vertices;
     }
     
-    public void LeerArchivo(String ruta) throws FileNotFoundException, IOException {
+    public void LeerArchivo(String ruta) throws FileNotFoundException, 
+            IOException {
 
         BufferedReader Archivo = new BufferedReader(new FileReader(ruta));
         
@@ -52,19 +50,20 @@ public class Grafo {
             
             String[] ArregloLineas = Linea.split(" ");
             
-            
+            // Se lee el numero de clusters a generar:            
             if (ArregloLineas.length == 1) {                
                 int nClusters = Integer.parseInt(ArregloLineas[0]);                
                 this.kClusters = nClusters;
             }
             
+            // Se agregan los nodos al grafo:
             else if (ArregloLineas.length == 2) {
                
                 double xNodo = Double.parseDouble(ArregloLineas[0]);  
                 double yNodo = Double.parseDouble(ArregloLineas[1]);     
                 
                 Nodo nuevoNodo = new Nodo(xNodo,yNodo);
-                
+                // Se verifica que no se agreguen nodos repetidos:
                 if (!this.vertices.contains(nuevoNodo)) {
                     this.AgregarVertice(nuevoNodo);       
                 }
@@ -76,11 +75,11 @@ public class Grafo {
     }
     
     public double DistanciaNodos(Nodo z,Nodo w) {
-        double resultado;
-        resultado = 
-                (double) (Math.pow(w.abscisa-z.abscisa,2) + 
+        // Descripcion: Esta funcion calcula la distancia entre dos
+        // puntos (Nodos)
+        double resultado = (Math.pow(w.abscisa-z.abscisa,2) + 
                 Math.pow(w.ordenada-z.ordenada,2));
-        return (double) Math.sqrt(resultado);
+        return Math.sqrt(resultado);
         
     }
     
@@ -90,18 +89,25 @@ public class Grafo {
     } 
     
     public void CalcularDistancias() {
-        
+        // Descripcion: Calcula las distancias entre un punto con todos 
+        // los demas y crea las aristas correspondientes.
         int numeroV = this.vertices.size();
         
         for (int i = 0; i < numeroV; i++) {
             
             for (int j = i+1; j < numeroV; j++) {              
     
-                double Distancias = DistanciaNodos(this.vertices.get(i),this.vertices.get(j));
-                Arista arista1 = new Arista( this.vertices.get(i),this.vertices.get(j),Distancias);
+                double Distancias = 
+                        DistanciaNodos(this.vertices.get(i),
+                                this.vertices.get(j));
+                Arista arista1 = 
+                        new Arista( this.vertices.get(i),
+                                this.vertices.get(j),Distancias);
                 this.AgregarArista(arista1);
-                Arista arista2 = new Arista( this.vertices.get(j),this.vertices.get(i),Distancias);
-                this.AgregarArista(arista2);
+                //Arista arista2 = 
+                //        new Arista(this.vertices.get(j),
+                //                this.vertices.get(i),Distancias);
+                //this.AgregarArista(arista2);
                       
                 }
                
@@ -133,8 +139,7 @@ public class Grafo {
     
     public Nodo find(Nodo x) {        
         if ( x != x.padre) {
-                x.padre = find(x.padre);
-               
+                x.padre = find(x.padre);               
         }
         return x.padre;
     }

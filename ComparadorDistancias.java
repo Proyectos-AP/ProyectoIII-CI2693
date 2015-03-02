@@ -1,8 +1,6 @@
-//package ProyectoAlgo;
-
 /**
  * 
- * Nodo.java
+ * ComparadorDistancias.java
  * 
  * Descripcion: Comparador para ordenar las aristas segun su peso
  * 

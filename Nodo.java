@@ -1,5 +1,3 @@
-//package ProyectoAlgo;
-
 /**
  * 
  * Nodo.java
