@@ -133,8 +133,7 @@ public class Grafo {
     
     public Nodo find(Nodo x) {        
         if ( x != x.padre) {
-                x.padre = find(x.padre);
-               
+                x.padre = find(x.padre);    
         }
         return x.padre;
     }

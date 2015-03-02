@@ -28,7 +28,7 @@ public class Main {
         
         Grafo grafo = new Grafo();
         
-        grafo.LeerArchivo("/home/prmm95/NetBeansProjects/Proyecto2-CI2693/src/data/puntos32.dat");
+        grafo.LeerArchivo("/home/alejandra/workspace/ProyectoAlgo/src/ProyectoAlgo/prueba.dat");
         
         System.out.println("PASE LEER ARCHIVO");
         
@@ -120,7 +120,9 @@ public class Main {
     	   scatterplotdemo2.pack();
     	   RefineryUtilities.centerFrameOnScreen(scatterplotdemo2);
     	   scatterplotdemo2.setVisible(true);  
-       			}        
+       			}    
+
+	System.out.println(tiempoCorrida+"  "+grafo.vertices.size());    
             
             
         }
