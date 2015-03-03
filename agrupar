@@ -1,14 +1,15 @@
 # !/bin/bash
 #
-#  Flags :
+#  Nombres:
+#	Alejandra Cordero / Carnet: 12-10645
+#	Pablo Maldonado   / Carnet: 12-10561
 #
+#  Flags:
 #     -q : Si esta presente el programa no tendra salida grafica
 #
-#  Descripcion :
-#
-#   
-#  
-#  
+#  Descripcion: Corre el proyecto 2 (CI2693)
+#    
+
 bool="False"
 
 while getopts 'q' opt
@@ -19,24 +20,20 @@ while getopts 'q' opt
 			;;
 
 		\?)
-			echo "Invalid"
+			echo "Error: Flag invalido"
 			exit 1
 			;;
-		:)
-			echo "Exit"
-			exit 1
+	
 		esac
 	done
 
 if [ $bool = "True" ]
 	then
 		path="$(pwd)/$2"
-		echo "La ruta es : $path"
 		java -Xmx4g -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "0" "$path" 
 	
 else
 		path="$(pwd)/$1"
-		echo "La ruta es: $path"
 		java -Xmx4g -cp .:jcommon-1.0.0.jar:jfreechart-1.0.1.jar Main "1"  "$path"
 	fi
 
