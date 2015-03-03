@@ -34,6 +34,14 @@ se anexan los archivos .jar correspondientes a Jfreechart y Jcommon.
 - La representacion del grafo se implemento con dos ArrayLists (Nodos y 
 Aristas) 
 
-Referencias: 
+Fuentes electronicas consultadas: 
 
+1) http://www.cs.swarthmore.edu/~newhall/unixhelp/javamakefiles.html
 
+2) http://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
+
+3) http://w3facility.org/question/changing-the-shapes-of-points-in-scatter-plot/
+
+4) https://github.com/lebedov/markovapplet/blob/f5f58d6dd52c3631fdba620f6bd5098c94c6cfbc/Makefile
+
+5) http://www.softwero.com/2014/07/solucionar-javalangnoclassdeffounderror.html
