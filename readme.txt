@@ -45,3 +45,7 @@ Fuentes electronicas consultadas:
 4) https://github.com/lebedov/markovapplet/blob/f5f58d6dd52c3631fdba620f6bd5098c94c6cfbc/Makefile
 
 5) http://www.softwero.com/2014/07/solucionar-javalangnoclassdeffounderror.html
+
+6) http://www.douglasbarahona.com/capturar-y-validar-argumentosflags-con-getopts-en-bash/
+
+7) http://ldc.usb.ve/~bonet/courses/ci2613/handouts/ci2613-aplicaciones.pdf
