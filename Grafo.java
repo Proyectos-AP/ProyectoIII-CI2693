@@ -104,10 +104,6 @@ public class Grafo {
                         new Arista( this.vertices.get(i),
                                 this.vertices.get(j),Distancias);
                 this.AgregarArista(arista1);
-                //Arista arista2 = 
-                //        new Arista(this.vertices.get(j),
-                //                this.vertices.get(i),Distancias);
-                //this.AgregarArista(arista2);
                       
                 }
                
